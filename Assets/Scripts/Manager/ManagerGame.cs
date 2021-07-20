@@ -12,6 +12,7 @@ public class ManagerGame : MonoBehaviour
 	
 	[Header("Config")]
     public GlobalVariables.CharactersTypes classTried;
+    public int charLvl = 1;
     public float timeResetCombo = 1;
     public bl_Joystick joystick;
 	
@@ -320,7 +321,11 @@ public class ManagerGame : MonoBehaviour
 	void StartGame()
     {
         //GetPlayerSelected
-        if(!proves)classTried = (GlobalVariables.CharactersTypes)PlayerPrefs.GetInt("PlayerSelected",0);
+        if (!proves)
+        {
+            classTried = (GlobalVariables.CharactersTypes)PlayerPrefs.GetInt("PlayerSelected", 0);
+            charLvl = PlayerPrefs.GetInt("CharacterLvl", 1);
+        }
 
         //SpawnObjects
         objMan.SpawnWorld();

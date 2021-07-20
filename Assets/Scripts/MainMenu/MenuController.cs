@@ -19,7 +19,10 @@ public class MenuController : MonoBehaviour
     public Text coinTxt;
     public Button btnStart;
     public Button btnUnlock;
+    public Button btnUpgrade;
     public Text priceTxt;
+    public Text priceUpgradeTxt;
+    public Text lvlTxt;
 
     [Header("Habilities")]
     public GameObject[] habilitiesMenu;
@@ -28,8 +31,9 @@ public class MenuController : MonoBehaviour
     public GameObject[] chars;
     public Transform spawnChar;
     public int[] minimumCoins;
-    
-    
+    public int[] coinsUpgrade;
+
+
     ///////PRIVATE VARS//////////
     Animator camStartAnimator;
     int index;
@@ -87,6 +91,7 @@ public class MenuController : MonoBehaviour
     public void Play()
     {
         PlayerPrefs.SetInt("PlayerSelected", index);
+        PlayerPrefs.SetInt("CharacterLvl", SaveSystem.characterlvl[index]);
         SceneManager.LoadScene("Joc");
     }
 
@@ -97,8 +102,26 @@ public class MenuController : MonoBehaviour
         coinTxt.text = SaveSystem.coins.ToString();
 
         ///Animacio en un futur
-
         Spawn();
+
+        SaveSystem.SaveData();
+    }
+
+    public void Upgrade()
+    {
+        if(SaveSystem.characterlvl[index] < 3)
+            SaveSystem.characterlvl[index]++;
+
+        SaveSystem.coins -= coinsUpgrade[index];
+        coinTxt.text = SaveSystem.coins.ToString();
+
+        lvlTxt.text = "Lvl." + SaveSystem.characterlvl[index].ToString();
+
+        btnUpgrade.gameObject.SetActive(SaveSystem.characterlvl[index] < 3);
+        priceUpgradeTxt.gameObject.SetActive(SaveSystem.characterlvl[index] < 3);
+
+        priceUpgradeTxt.text = (coinsUpgrade[index] * SaveSystem.characterlvl[index]).ToString();
+        btnUpgrade.interactable = SaveSystem.coins >= coinsUpgrade[index];
 
         SaveSystem.SaveData();
     }
@@ -112,6 +135,8 @@ public class MenuController : MonoBehaviour
         playerSpawned = Instantiate(chars[index], spawnChar.position, spawnChar.rotation);
         playerSpawned.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         Destroy(playerSpawned.GetComponent<PlayerController>());
+
+        lvlTxt.text = "Lvl." + SaveSystem.characterlvl[index].ToString();
 
         playerSpawned.AddComponent<MoveCharacterSelect>();
 
@@ -130,6 +155,9 @@ public class MenuController : MonoBehaviour
 
     void EnableBuy(bool ena)
     {
+        btnUpgrade.gameObject.SetActive(SaveSystem.characterlvl[index] < 3 &&!ena);
+        priceUpgradeTxt.gameObject.SetActive(SaveSystem.characterlvl[index] < 3 && !ena);
+
         btnUnlock.gameObject.SetActive(ena);
         priceTxt.gameObject.SetActive(ena);
 
@@ -141,6 +169,9 @@ public class MenuController : MonoBehaviour
         else
         {
             habilitySpawned = Instantiate(habilitiesMenu[index], SelectMenu.transform);
+
+            priceUpgradeTxt.text = (coinsUpgrade[index] * SaveSystem.characterlvl[index]).ToString();
+            btnUpgrade.interactable = SaveSystem.coins >= coinsUpgrade[index];
         }
     }
 
