@@ -706,7 +706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &124089386
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5914,7 +5914,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 839.9, y: -461.9}
+  m_AnchoredPosition: {x: 821.6, y: -461.9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1343097726
@@ -8119,7 +8119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &1855713755
 Camera:
   m_ObjectHideFlags: 0
@@ -8195,7 +8195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1867004620
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8640,6 +8640,11 @@ MonoBehaviour:
   priceTxt: {fileID: 1667440525}
   priceUpgradeTxt: {fileID: 1441590621}
   lvlTxt: {fileID: 1343097727}
+  lvlColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.62473303, g: 0.9528302, b: 0.6464779, a: 1}
+  - {r: 0.9433962, g: 0.94112164, b: 0.5918476, a: 1}
+  lvlSize: 1e0000002800000032000000
   habilitiesMenu:
   - {fileID: 3185564441005856188, guid: fd4249de528fe214dba9bc09ede01ff6, type: 3}
   - {fileID: 5497823064995306191, guid: 8e456f3d30602ac458b10160ba559141, type: 3}
@@ -9105,7 +9110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2094103430
 MonoBehaviour:
   m_ObjectHideFlags: 0

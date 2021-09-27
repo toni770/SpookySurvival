@@ -16,6 +16,11 @@ public class PlayerData
         maxWave = _maxWave;
         characterUnlock = _characterUnlock;
         characterlvl = _characterlvl;
+
+        for (int i = 0; i < characterlvl.Length; i++) characterlvl[i] = 1;
+        for (int i = 0; i < characterUnlock.Length; i++) characterUnlock[i] = false;
+
+        characterUnlock[0] = true;
     }
 
 }

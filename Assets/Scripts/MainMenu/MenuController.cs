@@ -24,6 +24,10 @@ public class MenuController : MonoBehaviour
     public Text priceUpgradeTxt;
     public Text lvlTxt;
 
+    [Header("Levels")]
+    public Color[] lvlColors;
+    public int[] lvlSize; 
+
     [Header("Habilities")]
     public GameObject[] habilitiesMenu;
 
@@ -115,7 +119,7 @@ public class MenuController : MonoBehaviour
         SaveSystem.coins -= coinsUpgrade[index];
         coinTxt.text = SaveSystem.coins.ToString();
 
-        lvlTxt.text = "Lvl." + SaveSystem.characterlvl[index].ToString();
+        ChangelvlText();
 
         btnUpgrade.gameObject.SetActive(SaveSystem.characterlvl[index] < 3);
         priceUpgradeTxt.gameObject.SetActive(SaveSystem.characterlvl[index] < 3);
@@ -123,7 +127,7 @@ public class MenuController : MonoBehaviour
         priceUpgradeTxt.text = (coinsUpgrade[index] * SaveSystem.characterlvl[index]).ToString();
         btnUpgrade.interactable = SaveSystem.coins >= coinsUpgrade[index];
 
-        SaveSystem.SaveData();
+       // SaveSystem.SaveData();
     }
 
     ///////PRIVATE FUNCTIONS//////////
@@ -136,7 +140,7 @@ public class MenuController : MonoBehaviour
         playerSpawned.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
         Destroy(playerSpawned.GetComponent<PlayerController>());
 
-        lvlTxt.text = "Lvl." + SaveSystem.characterlvl[index].ToString();
+        ChangelvlText();
 
         playerSpawned.AddComponent<MoveCharacterSelect>();
 
@@ -187,5 +191,12 @@ public class MenuController : MonoBehaviour
 
         tapToPlay.SetActive(false);
         ShowSelectButtons();
+    }
+
+    void ChangelvlText()
+    {
+        lvlTxt.text = "Lvl." + SaveSystem.characterlvl[index].ToString();
+        lvlTxt.color = lvlColors[SaveSystem.characterlvl[index]-1];
+        lvlTxt.fontSize = lvlSize[SaveSystem.characterlvl[index]-1];
     }
 }

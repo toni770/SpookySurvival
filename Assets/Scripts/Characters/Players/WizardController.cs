@@ -7,6 +7,8 @@ public class WizardController : PlayerController
 {
     [Header("Wizard Config")]
     public float dashSpeed;
+    public float blackHoleLife = 3;
+    public GameObject blackHole;
 
     float dashCount = 0;
     bool dashing = false;
@@ -28,6 +30,12 @@ public class WizardController : PlayerController
     }
     protected override void DoPower()
     {
+        if (ManagerGame.Instance.charLvl > 1)
+        {
+            GameObject obj = Instantiate(blackHole, transform.position, Quaternion.identity);
+            obj.GetComponent<BlackHole>().lifeTime = blackHoleLife;
+        }
+
         GetInmunity();
         ChangeVel(dashSpeed);
         dashing = true;
